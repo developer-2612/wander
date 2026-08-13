@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette:
+       Green #26382B — Header, buttons, major sections
+       Mountain Olive #59634A — Secondary sections, cards
+       Warm Sand #D8C5A3 — Background accents
+       Cream / Ivory #F7F4EC — Main website background
+       Bronze Gold #B08A4A — CTA accents, icons, highlights
+       Charcoal #252522 — Headings & text
+       Sky Blue #6D91A0 — Small travel/sky/water accents
+    */
+    --background: 42 33% 95%;          /* Cream / Ivory */
+    --foreground: 45 9% 15%;           /* Charcoal */
+    --card: 42 24% 85%;                /* Warm Sand */
+    --card-foreground: 45 9% 15%;
+    --popover: 42 33% 95%;
+    --popover-foreground: 45 9% 15%;
+    --primary: 136 16% 19%;            /* Green */
+    --primary-foreground: 42 33% 95%;
+    --secondary: 90 7% 34%;            /* Mountain Olive */
+    --secondary-foreground: 42 33% 95%;
+    --muted: 42 24% 82%;               /* Warm Sand lighter */
+    --muted-foreground: 45 6% 35%;
+    --accent: 34 39% 49%;              /* Bronze Gold */
+    --accent-foreground: 42 33% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 42 33% 98%;
+    --border: 38 25% 76%;              /* Sand-based border */
+    --input: 38 25% 76%;
+    --ring: 34 39% 49%;                /* Bronze Gold */
+    --radius: 0.75rem;
+
+    --font-poppins: 'Poppins', sans-serif;
+    --font-raleway: 'Raleway', sans-serif;
+  }
+
+  .dark {
+    --background: 136 16% 10%;
+    --foreground: 42 25% 92%;
+    --card: 90 7% 20%;
+    --card-foreground: 42 25% 92%;
+    --popover: 136 16% 12%;
+    --popover-foreground: 42 25% 92%;
+    --primary: 136 16% 19%;
+    --primary-foreground: 42 33% 95%;
+    --secondary: 90 7% 28%;
+    --secondary-foreground: 42 25% 92%;
+    --muted: 90 7% 22%;
+    --muted-foreground: 42 12% 62%;
+    --accent: 34 39% 49%;
+    --accent-foreground: 42 33% 98%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 42 33% 98%;
+    --border: 90 7% 26%;
+    --input: 90 7% 26%;
+    --ring: 34 39% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-poppins);
+  }
+  .font-display {
+    font-family: var(--font-raleway);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #252522; /* Charcoal for headings */
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee-track-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite reverse;
+  }
+  .marquee-paused:hover .marquee-track,
+  .marquee-paused:hover .marquee-track-reverse {
+    animation-play-state: paused;
+  }
+  .fade-in-up {
+    animation: fadeInUp 0.7s ease-out both;
+  }
+  .fade-in {
+    animation: fadeIn 1s ease-out both;
+  }
+  .scale-in {
+    animation: scaleIn 0.6s ease-out both;
+  }
+  .hero-zoom {
+    animation: heroZoom 20s ease-out forwards;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.15); }
+  to { transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+::selection {
+  background: #B08A4A;
+  color: #F7F4EC;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #D8C5A3;
+}
+::-webkit-scrollbar-thumb {
+  background: #59634A;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #26382B;
+}
